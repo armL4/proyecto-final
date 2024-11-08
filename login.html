@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/login.css">
+
+</head>
+<body>
+
+    <h1>Iniciar Sesión</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="logout.html">Logout</a>
+        <img src="icono-tienda.png" alt="Icono de la tienda" style="width:30px; height:30px;">
+        <a href="categoria1.html">Categoría 1</a>
+        <a href="categoria2.html">Categoría 2</a>
+        <a href="categoria3.html">Categoría 3</a>
+        <a href="registro.html">register</a>
+    </nav>
+    <form action="/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+    <!-- login.html -->
+<form id="loginForm" onsubmit="handleLogin(event)">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" required>
+    <button type="submit">Iniciar Sesión</button>
+</form>
+
+<script>
+function handleLogin(event) {
+    event.preventDefault();
+    // Validar el login aquí (esto es una simulación)
+    window.location.href = 'index.html'; // Redirecciona a la página principal
+}
+</script>
+<script src="navbar.js"></script>
+</body>
+</html>

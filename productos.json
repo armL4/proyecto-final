@@ -1,0 +1,61 @@
+{
+    "categorias": [
+        {
+            "nombre": "Ficción",
+            "productos": [
+                {
+                    "id": 1,
+                    "titulo": "El Gran Gatsby",
+                    "descripcion": "Una novela clásica de F. Scott Fitzgerald.",
+                    "precio": 12.99,
+                    "imagen": "images/gran-gatsby.jpg"
+                },
+                {
+                    "id": 2,
+                    "titulo": "1984",
+                    "descripcion": "Distopía escrita por George Orwell.",
+                    "precio": 10.99,
+                    "imagen": "images/1984.jpg"
+                }
+            ]
+        },
+        {
+            "nombre": "Ciencia",
+            "productos": [
+                {
+                    "id": 3,
+                    "titulo": "Breve Historia del Tiempo",
+                    "descripcion": "Exploración del universo por Stephen Hawking.",
+                    "precio": 15.99,
+                    "imagen": "images/breve-historia.jpg"
+                },
+                {
+                    "id": 4,
+                    "titulo": "El Gen Egoísta",
+                    "descripcion": "Richard Dawkins presenta la evolución genética.",
+                    "precio": 13.99,
+                    "imagen": "images/gen-egoista.jpg"
+                }
+            ]
+        },
+        {
+            "nombre": "Tecnología",
+            "productos": [
+                {
+                    "id": 5,
+                    "titulo": "Clean Code",
+                    "descripcion": "Guía de código limpio por Robert C. Martin.",
+                    "precio": 20.99,
+                    "imagen": "images/clean-code.jpg"
+                },
+                {
+                    "id": 6,
+                    "titulo": "Inteligencia Artificial",
+                    "descripcion": "Introducción a la IA moderna.",
+                    "precio": 18.99,
+                    "imagen": "images/ia.jpg"
+                }
+            ]
+        }
+    ]
+}

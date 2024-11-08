@@ -1,0 +1,12 @@
+/* registro.css */
+form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Reutilizar estilos de `login.css` para inputs y botones si no cambian */

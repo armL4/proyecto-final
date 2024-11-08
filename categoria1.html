@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nombre de la Tienda - Categoría 1</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/categoria.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="logout.html">Logout</a>
+        <img src="icono-tienda.png" alt="Icono de la tienda" style="width:30px; height:30px;">
+        <a href="categoria1.html">Categoría 1</a>
+        <a href="categoria2.html">Categoría 2</a>
+        <a href="categoria3.html">Categoría 3</a>
+    </nav>
+    <!-- HTML para una tarjeta de producto -->
+<div class="product-card">
+    <img src="ruta-imagen.jpg" alt="Nombre del Producto">
+    <h3>Nombre del Producto</h3>
+    <p>Descripción breve del producto.</p>
+    <p><strong>$Precio</strong></p>
+    <div class="quantity-control">
+        <button onclick="decreaseQuantity(this)">-</button>
+        <input type="number" value="1" min="1" readonly>
+        <button onclick="increaseQuantity(this)">+</button>
+    </div>
+</div>
+
+<script>
+function increaseQuantity(button) {
+    const quantityInput = button.previousElementSibling;
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+}
+
+function decreaseQuantity(button) {
+    const quantityInput = button.nextElementSibling;
+    if (parseInt(quantityInput.value) > 1) {
+        quantityInput.value = parseInt(quantityInput.value) - 1;
+    }
+}
+</script>
+
+    <h1>Categoría 1</h1>
+    <script src="navbar.js"></script>
+
+</body>
+</html>
