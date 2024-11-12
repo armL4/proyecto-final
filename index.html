@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/home.css">
     <link rel="stylesheet" href="estilos/categoria.css">
-
 </head>
 <body>
     <nav>
@@ -18,81 +17,66 @@
         <a href="categoria2.html">Categoría 2</a>
         <a href="categoria3.html">Categoría 3</a>
         <a href="login.html">Login</a>
+        <a href="cart.html">cart</a>
     </nav>
     
-    <h1>Bienvenidos a Nombre de la Tienda</h1>
-    <script src="navbar.js"></script>
+    <h1>Bienvenidos a Warii</h1>
     
-    <!-- index.html hola-->
-<!-- index.html -->
-<div id="products-container"></div>
+    <!-- Contenedor de productos -->
+    <div id="products-container"></div>
 
-<script>
-async function fetchProducts() {
-    try {
-        const response = await fetch('productos.json'); // Asegúrate de que `productos.json` esté en la misma ruta
+    <!-- Archivo JavaScript para el manejo del carrito -->
+    <script src="scripts/cartManager.js"></script>
+
+    <script>
+    async function fetchProducts() {
+        const response = await fetch('productos.json');
         const data = await response.json();
         renderProducts(data.categorias);
-    } catch (error) {
-        console.error("Error al cargar los productos:", error);
     }
-}
 
-function renderProducts(categorias) {
-    const container = document.getElementById('products-container');
-    container.innerHTML = '';
+    function renderProducts(categorias) {
+        const container = document.getElementById('products-container');
+        container.innerHTML = '';
 
-    categorias.forEach(categoria => {
-        const categorySection = document.createElement('section');
-        categorySection.innerHTML = `<h2>${categoria.nombre}</h2>`;
-        
-        // Solo muestra los primeros 2 o 3 productos
-        const productosAMostrar = categoria.productos.slice(0, 3);
+        categorias.forEach(categoria => {
+            const categorySection = document.createElement('section');
+            categorySection.innerHTML = `<h2>${categoria.nombre}</h2>`;
+            
+            categoria.productos.slice(0, 3).forEach(producto => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.innerHTML = `
+                    <img src="${producto.imagen}" alt="${producto.titulo}">
+                    <h3>${producto.titulo}</h3>
+                    <p>${producto.descripcion}</p>
+                    <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+                    <button onclick="addToCartFromIndex(${producto.id})">Añadir al carrito</button>
+                `;
+                categorySection.appendChild(card);
+            });
 
-        productosAMostrar.forEach(producto => {
-            const card = document.createElement('div');
-            card.classList.add('product-card');
-            card.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.titulo}">
-                <h3>${producto.titulo}</h3>
-                <p>${producto.descripcion}</p>
-                <p><strong>$${producto.precio.toFixed(2)}</strong></p>
-                <div class="quantity-control">
-                    <button onclick="decreaseQuantity(this)">-</button>
-                    <input type="number" value="1" min="1" readonly>
-                    <button onclick="increaseQuantity(this)">+</button>
-                </div>
-                <button class="add-to-cart" onclick="addToCart(${producto.id})">Añadir al carrito</button>
-            `;
-            categorySection.appendChild(card);
+            container.appendChild(categorySection);
         });
-
-        container.appendChild(categorySection);
-    });
-}
-
-function increaseQuantity(button) {
-    const quantityInput = button.previousElementSibling;
-    quantityInput.value = parseInt(quantityInput.value) + 1;
-}
-
-function decreaseQuantity(button) {
-    const quantityInput = button.nextElementSibling;
-    if (parseInt(quantityInput.value) > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
     }
-}
 
-function addToCart(productId) {
-    alert(`Producto ${productId} añadido al carrito.`);
-    // Aquí agregarías la lógica para añadir el producto al carrito de compras
-}
+    // Función auxiliar para añadir un producto desde index.html
+    function addToCartFromIndex(id) {
+        const product = {
+            id: id,
+            titulo: "Nombre del producto",  // Sustituir con el nombre real si lo tienes disponible en el contexto
+            descripcion: "Descripción del producto",
+            precio: 100,  // Sustituir con el precio real
+            imagen: "ruta_de_imagen.jpg",  // Sustituir con la imagen real
+            quantity: 1  // Cantidad inicial
+        };
+        addToCart(product);  // Llama a la función en cartManager.js
+    }
 
-document.addEventListener('DOMContentLoaded', fetchProducts);
-</script>
-
-
-
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+    </script>
 </body>
 </html>
+
+
 

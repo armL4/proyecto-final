@@ -101,3 +101,32 @@
     border: none;
     font-size: 1rem;
 }
+#products-container {
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    padding: 2rem;
+    margin: auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+#products-container section {
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

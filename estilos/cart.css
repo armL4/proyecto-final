@@ -1,0 +1,126 @@
+/* Variables de color */
+:root {
+    --color-primary: #4a90e2;
+    --color-secondary: #50e3c2;
+    --color-accent: #d0021b;
+    --color-background: #f5f7fa;
+    --color-text: #4a4a4a;
+    --color-card-bg: #ffffff;
+    --color-border: #ddd;
+}
+
+/* Estilos globales */
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezado del carrito */
+header {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: var(--color-secondary);
+}
+
+/* Contenedor del carrito */
+#cart-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Elemento del producto en el carrito */
+.cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.cart-item h3 {
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.cart-item p {
+    color: var(--color-text);
+    margin: 0.5rem 0;
+}
+
+/* Botón de eliminar */
+.cart-item button {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: auto;
+}
+
+.cart-item button:hover {
+    background-color: #a40014;
+}
+
+/* Mensaje de carrito vacío */
+#cart-container p {
+    text-align: center;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    margin: 2rem 0;
+}
+
+/* Botón de continuar comprando */
+#continue-shopping {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+#continue-shopping:hover {
+    background-color: var(--color-secondary);
+}

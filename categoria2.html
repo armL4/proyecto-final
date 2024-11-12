@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nombre de la Tienda - Categoría 2</title>
+    <title>Nombre de la Tienda</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/home.css">
     <link rel="stylesheet" href="estilos/categoria.css">
 </head>
 <body>
@@ -15,10 +16,71 @@
         <a href="categoria1.html">Categoría 1</a>
         <a href="categoria2.html">Categoría 2</a>
         <a href="categoria3.html">Categoría 3</a>
+        <a href="login.html">Login</a>
+        <a href="cart.html">Carrito</a>
     </nav>
     
-    <h1>Categoría 2</h1>
-    <script src="navbar.js"></script>
+    <h1>Bienvenidos a Warii</h1>
+    
+    <!-- Contenedor de productos -->
+    <div id="products-container"></div>
 
+    <!-- Archivo JavaScript para el manejo del carrito -->
+    <script src="scripts/cartManager.js"></script>
+
+    <script>
+    async function fetchProducts() {
+        const response = await fetch('productos.json');
+        const data = await response.json();
+        
+        // Filtrar para obtener solo la categoría "Ficción"
+        const ficcionCategory = data.categorias.find(categoria => categoria.nombre === "Tecnología");
+        
+        // Renderizar solo los productos de la categoría "Ficción"
+        renderProducts(ficcionCategory ? [ficcionCategory] : []);
+    }
+
+    function renderProducts(categorias) {
+        const container = document.getElementById('products-container');
+        container.innerHTML = '';
+
+        categorias.forEach(categoria => {
+            const categorySection = document.createElement('section');
+            categorySection.innerHTML = `<h2>${categoria.nombre}</h2>`;
+            
+            categoria.productos.slice(0, 3).forEach(producto => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                card.innerHTML = `
+                    <img src="${producto.imagen}" alt="${producto.titulo}">
+                    <h3>${producto.titulo}</h3>
+                    <p>${producto.descripcion}</p>
+                    <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+                    <button onclick="addToCartFromIndex(${producto.id})">Añadir al carrito</button>
+                `;
+                categorySection.appendChild(card);
+            });
+
+            container.appendChild(categorySection);
+        });
+    }
+
+    // Función auxiliar para añadir un producto desde index.html
+    function addToCartFromIndex(id) {
+        const product = {
+            id: id,
+            titulo: "Nombre del producto",  // Sustituir con el nombre real si lo tienes disponible en el contexto
+            descripcion: "Descripción del producto",
+            precio: 100,  // Sustituir con el precio real
+            imagen: "ruta_de_imagen.jpg",  // Sustituir con la imagen real
+            quantity: 1  // Cantidad inicial
+        };
+        addToCart(product);  // Llama a la función en cartManager.js
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+    </script>
 </body>
 </html>
+
+
