@@ -1,0 +1,5 @@
+input[type="text"] {
+    width: 60%; /* O ajusta a un valor específico como '300px' */
+    height: 10px; /* O ajusta según necesites */
+    padding: 10px; /* Opcional: para añadir espacio interno */
+}

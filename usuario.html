@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="estilos/style.css">
+</head>
+<body>
+    <nav>
+        <section class="top-section">
+            <img src="img/image.png" alt="Icono de la tienda" style="height:40px;">
+            <form action="search.html" method="GET" style="display:inline;">
+                <input type="text" name="query" placeholder="Buscar productos...">
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="usuario.html" id="userImageLink" style="display:none;">
+                <img src="img/user_icon.png" alt="User Icon" style="height:30px;">
+            </a>
+        </section>
+        <section>
+            <a href="categoria1.html">Categoría 1</a>
+            <a href="categoria2.html">Categoría 2</a>
+            <a href="categoria3.html">Categoría 3</a>
+            <a href="categoria4.html">Categoría 4</a>
+            <a href="categoria5.html">Categoría 5</a>
+            <a href="categoria6.html">Categoría 6</a>
+            <a href="cart.html">Cart</a>
+        </section>
+    </nav>
+
+    <h1>Perfil de Usuario</h1>
+    <section id="userInfo">
+        <p><strong>Nombre:</strong> <span id="userName"></span></p>
+        <p><strong>Apellido:</strong> <span id="userLastName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Fecha de Nacimiento:</strong> <span id="userBirthdate"></span></p>
+        <button onclick="handleLogout()">Cerrar Sesión</button>
+    </section>
+
+    <script>
+    function handleLogout() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userName');
+        window.location.href = 'logout.html'; // Redirecciona a la página de logout
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const registeredUser = JSON.parse(localStorage.getItem('user'));
+        if (registeredUser) {
+            document.getElementById('userName').textContent = registeredUser.nombre;
+            document.getElementById('userLastName').textContent = registeredUser.apellido;
+            document.getElementById('userEmail').textContent = registeredUser.email;
+            document.getElementById('userBirthdate').textContent = registeredUser.fechaNacimiento;
+        } else {
+            window.location.href = 'login.html'; // Redirecciona al login si no está autenticado
+        }
+    });
+    </script>
+</body>
+</html>
+
+
+

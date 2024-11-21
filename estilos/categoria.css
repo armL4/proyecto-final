@@ -1,82 +1,142 @@
-/* categoria.css */
-.container {
+:root {
+    --color-primary: #4a90e2;
+    --color-secondary: #50e3c2;
+    --color-accent: #d0021b;
+    --color-background: #f5f7fa;
+    --color-text: #4a4a4a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: var(--color-primary);
+}
+
+/* Navbar */
+nav {
+    width: 100%;
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;  /* Cambiar a fila */
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 2rem;
+}
+
+nav a:hover {
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+}
+
+/* Align top-section elements horizontally */
+.top-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.top-section img {
+    margin-right: 10px;
+}
+
+.top-section form {
+    display: flex;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.top-section button {
+    padding: 5px 10px;
+}
+
+nav section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    width: 700px; /* O ajusta a un valor específico como '300px' */
+    height: 30px; /* O ajusta según necesites */
+    padding: 10px; /* Opcional: para añadir espacio interno */
+}
+
+button {
+    background-color: var(--color-primary); /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño del texto */
+}
+
+/* Efecto hover (cuando el cursor está sobre el botón) */
+button:hover {
+    background-color: var(--color-secondary); /* Color de fondo al pasar sobre el botón */
+}
+
+/* style.css for products */
+#products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     max-width: 1200px;
     padding: 2rem;
     margin: auto;
 }
 
-.container .product-card {
-    flex: 1 1 calc(33.333% - 1rem);
+#products-container section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Card de Producto */
 .product-card {
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    background-color: #fff;
-    padding: 1rem;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 300px;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .product-card img {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-.product-card h3 {
-    color: var(--color-secondary);
-    margin-top: 0.5rem;
-}
-
-.product-card p {
-    color: var(--color-text);
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-}
-
-.product-card button {
-    padding: 0.5rem;
-    background-color: var(--color-accent);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.product-card button:hover {
-    background-color: var(--color-primary);
-}
-/* product-card.css */
-.product-card {
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    background-color: #fff;
-    padding: 1rem;
     width: 100%;
-    max-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.product-card img {
-    max-width: 100%;
+    height: auto;
     border-radius: 8px;
 }
 
 .product-card h3 {
+    margin: 1rem 0 0.5rem;
     color: var(--color-secondary);
-    margin-top: 0.5rem;
 }
 
 .product-card p {
-    color: var(--color-text);
-    font-size: 0.9rem;
     margin: 0.5rem 0;
 }
 
@@ -84,6 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 1rem 0;
 }
 
 .quantity-control button {
@@ -101,32 +162,18 @@
     border: none;
     font-size: 1rem;
 }
-#products-container {
-    display: grid;
-    gap: 2rem;
-    max-width: 1200px;
-    padding: 2rem;
-    margin: auto;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
-#products-container section {
-    margin-bottom: 2rem;
-}
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+.add-to-cart:hover {
+    background-color: #45a049;
 }

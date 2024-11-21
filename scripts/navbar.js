@@ -1,4 +1,3 @@
-// navbar.js
 const pages = [
     { title: 'Home', url: 'index.html' },
     { title: 'Categoría 1', url: 'categoria1.html' },
@@ -24,3 +23,9 @@ function renderNavbar() {
 }
 
 document.addEventListener('DOMContentLoaded', renderNavbar);
+
+function handleLogout() {
+    // Lógica para cerrar sesión (esto es una simulación)
+    window.location.href = 'logout.html'; // Redirecciona a la página de logout
+}
+

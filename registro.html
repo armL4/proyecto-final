@@ -16,10 +16,10 @@
         <a href="categoria2.html">Categoría 2</a>
         <a href="categoria3.html">Categoría 3</a>
         <a href="login.html">Login</a>
-        <a href="cart.html">Login</a>
+        <a href="cart.html">Cart</a>
     </nav>
     <h1>Registro</h1>
-    <form action="/register" method="post">
+    <form id="registerForm" onsubmit="handleRegister(event)">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
 
@@ -37,6 +37,33 @@
 
         <button type="submit">Registrar</button>
     </form>
+
+    <script>
+    function handleRegister(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
+
+        // Crear un objeto de usuario
+        const user = {
+            nombre,
+            apellido,
+            email,
+            password,
+            fechaNacimiento
+        };
+
+        // Guardar el usuario en el localStorage
+        localStorage.setItem('user', JSON.stringify(user));
+
+        alert('Registro exitoso');
+        window.location.href = 'login.html'; // Redirecciona a la página de login
+    }
+    </script>
     <script src="navbar.js"></script>
 </body>
 </html>

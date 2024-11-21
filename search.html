@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la Búsqueda</title>
+    <link rel="stylesheet" href="estilos/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="logout.html">Logout</a>
+        <a href="cart.html">Cart</a>
+        <form action="search.html" method="GET" style="display:inline;">
+            <input type="text" name="query" placeholder="Buscar productos...">
+            <button type="submit">Buscar</button>
+        </form>
+    </nav>
+
+    <h1>Resultados de la Búsqueda</h1>
+    
+    <!-- Contenedor de resultados -->
+    <div id="results-container"></div>
+
+    <script>
+    async function fetchProducts(query) {
+        const response = await fetch('productos.json');
+        const data = await response.json();
+        renderResults(data.categorias, query);
+    }
+
+    function renderResults(categorias, query) {
+        const container = document.getElementById('results-container');
+        container.innerHTML = '';
+
+        categorias.forEach(categoria => {
+            categoria.productos.forEach(producto => {
+                if (producto.titulo.toLowerCase().includes(query.toLowerCase()) || producto.descripcion.toLowerCase().includes(query.toLowerCase())) {
+                    const card = document.createElement('div');
+                    card.classList.add('product-card');
+                    card.innerHTML = `
+                        <img src="${producto.imagen}" alt="${producto.titulo}">
+                        <h3>${producto.titulo}</h3>
+                        <p>${producto.descripcion}</p>
+                        <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+                        <button onclick="addToCart(${producto.id})">Añadir al carrito</button>
+                    `;
+                    container.appendChild(card);
+                }
+            });
+        });
+    }
+
+    // Obtener el parámetro de búsqueda de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
+    
+    if (query) {
+        fetchProducts(query);
+    }
+    </script>
+    <script>src="scripts/cartManager.js"</script>
+</body>
+</html>
+

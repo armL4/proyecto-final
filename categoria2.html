@@ -29,20 +29,39 @@
     <script src="scripts/cartManager.js"></script>
 
     <script>
+    let productosData = [];
+
     async function fetchProducts() {
-        const response = await fetch('productos.json');
-        const data = await response.json();
-        
-        // Filtrar para obtener solo la categoría "Ficción"
-        const ficcionCategory = data.categorias.find(categoria => categoria.nombre === "Tecnología");
-        
-        // Renderizar solo los productos de la categoría "Ficción"
-        renderProducts(ficcionCategory ? [ficcionCategory] : []);
+        try {
+            const response = await fetch('productos.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const data = await response.json();
+            console.log('Datos de productos:', data);
+            
+            // Guardar todos los productos en una variable global
+            productosData = data.categorias.flatMap(categoria => categoria.productos);
+            
+            // Filtrar para obtener solo la categoría "Ficción"
+            const ficcionCategory = data.categorias.find(categoria => categoria.nombre === "Ciencia");
+            console.log('Categoría Ficción:', ficcionCategory);
+            
+            // Renderizar solo los productos de la categoría "Ficción"
+            renderProducts(ficcionCategory ? [ficcionCategory] : []);
+        } catch (error) {
+            console.error('Error al cargar los productos:', error);
+        }
     }
 
     function renderProducts(categorias) {
         const container = document.getElementById('products-container');
         container.innerHTML = '';
+
+        if (!categorias.length) {
+            container.innerHTML = '<p>No se encontraron productos en la categoría "Ficción".</p>';
+            return;
+        }
 
         categorias.forEach(categoria => {
             const categorySection = document.createElement('section');
@@ -67,15 +86,20 @@
 
     // Función auxiliar para añadir un producto desde index.html
     function addToCartFromIndex(id) {
-        const product = {
-            id: id,
-            titulo: "Nombre del producto",  // Sustituir con el nombre real si lo tienes disponible en el contexto
-            descripcion: "Descripción del producto",
-            precio: 100,  // Sustituir con el precio real
-            imagen: "ruta_de_imagen.jpg",  // Sustituir con la imagen real
-            quantity: 1  // Cantidad inicial
-        };
-        addToCart(product);  // Llama a la función en cartManager.js
+        const product = productosData.find(p => p.id === id);
+        if (!product) {
+            console.error('Producto no encontrado');
+            return;
+        }
+        
+        addToCart({
+            id: product.id,
+            titulo: product.titulo,
+            descripcion: product.descripcion,
+            precio: product.precio,
+            imagen: product.imagen,
+            quantity: 1
+        });  // Llama a la función en cartManager.js
     }
 
     document.addEventListener('DOMContentLoaded', fetchProducts);

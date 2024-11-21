@@ -6,21 +6,32 @@
     <title>Nombre de la Tienda</title>
     <link rel="stylesheet" href="estilos/style.css">
     <link rel="stylesheet" href="estilos/home.css">
-    <link rel="stylesheet" href="estilos/categoria.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="logout.html">Logout</a>
-        <img src="icono-tienda.png" alt="Icono de la tienda" style="width:30px; height:30px;">
-        <a href="categoria1.html">Categoría 1</a>
-        <a href="categoria2.html">Categoría 2</a>
-        <a href="categoria3.html">Categoría 3</a>
-        <a href="login.html">Login</a>
-        <a href="cart.html">cart</a>
+        <section>
+            <img src="img/image.png" alt="Icono de la tienda" style="height:40px;padding-right: 100px;">
+            <form action="search.html" method="GET" style="display:inline;">
+                <input type="text" name="query" placeholder="Buscar productos...">
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="usuario.html" id="userImageLink" style="display:none;">
+                <img src="img/user_icon.png" alt="User Icon" style="height:30px;">
+            </a>
+        </section>
+        <section>
+            <a href="categoria1.html">Categoría 1</a>
+            <a href="categoria2.html">Categoría 2</a>
+            <a href="categoria3.html">Categoría 3</a>
+            <a href="categoria1.html">Categoría 4</a>
+            <a href="categoria1.html">Categoría 5</a>
+            <a href="categoria1.html">Categoría 6</a>
+            <a href="cart.html">Cart</a>
+        </section>
     </nav>
     
-    <h1>Bienvenidos a Warii</h1>
+    <h1 id="welcomeMessage">Bienvenidos a Warii</h1>
     
     <!-- Contenedor de productos -->
     <div id="products-container"></div>
@@ -28,55 +39,14 @@
     <!-- Archivo JavaScript para el manejo del carrito -->
     <script src="scripts/cartManager.js"></script>
 
-    <script>
-    async function fetchProducts() {
-        const response = await fetch('productos.json');
-        const data = await response.json();
-        renderProducts(data.categorias);
-    }
-
-    function renderProducts(categorias) {
-        const container = document.getElementById('products-container');
-        container.innerHTML = '';
-
-        categorias.forEach(categoria => {
-            const categorySection = document.createElement('section');
-            categorySection.innerHTML = `<h2>${categoria.nombre}</h2>`;
-            
-            categoria.productos.slice(0, 3).forEach(producto => {
-                const card = document.createElement('div');
-                card.classList.add('product-card');
-                card.innerHTML = `
-                    <img src="${producto.imagen}" alt="${producto.titulo}">
-                    <h3>${producto.titulo}</h3>
-                    <p>${producto.descripcion}</p>
-                    <p><strong>$${producto.precio.toFixed(2)}</strong></p>
-                    <button onclick="addToCartFromIndex(${producto.id})">Añadir al carrito</button>
-                `;
-                categorySection.appendChild(card);
-            });
-
-            container.appendChild(categorySection);
-        });
-    }
-
-    // Función auxiliar para añadir un producto desde index.html
-    function addToCartFromIndex(id) {
-        const product = {
-            id: id,
-            titulo: "Nombre del producto",  // Sustituir con el nombre real si lo tienes disponible en el contexto
-            descripcion: "Descripción del producto",
-            precio: 100,  // Sustituir con el precio real
-            imagen: "ruta_de_imagen.jpg",  // Sustituir con la imagen real
-            quantity: 1  // Cantidad inicial
-        };
-        addToCart(product);  // Llama a la función en cartManager.js
-    }
-
-    document.addEventListener('DOMContentLoaded', fetchProducts);
-    </script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
+
+
+
+
+
 
 
 
