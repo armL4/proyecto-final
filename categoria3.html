@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nombre de la Tienda</title>
     <link rel="stylesheet" href="estilos/style.css">
-    <link rel="stylesheet" href="estilos/home.css">
-    <link rel="stylesheet" href="estilos/categoria.css">
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="logout.html">Logout</a>
-        <img src="icono-tienda.png" alt="Icono de la tienda" style="width:30px; height:30px;">
-        <a href="categoria1.html">Categoría 1</a>
-        <a href="categoria2.html">Categoría 2</a>
-        <a href="categoria3.html">Categoría 3</a>
-        <a href="login.html">Login</a>
-        <a href="cart.html">Carrito</a>
+        <section>
+            <img src="img/image.png" alt="Icono de la tienda" style="height:40px;padding-right: 100px;">
+            <form action="search.html" method="GET" style="display:inline;">
+                <input type="text" name="query" placeholder="Buscar productos...">
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="usuario.html" id="userImageLink" style="display:none;">
+                <img src="img/user_icon.png" alt="User Icon" style="height:30px;">
+            </a>
+        </section>
+        <section>
+            <a href="categoria1.html">Ficcion</a>
+            <a href="categoria2.html">Ciencia</a>
+            <a href="index.html">Home</a>
+            <a href="categoria4.html">Historia</a>
+            <a href="categoria5.html">Infantil</a>
+            <a href="categoria6.html">Asesino serial</a>
+            <a href="cart.html">Cart</a>
+        </section>
     </nav>
     
-    <h1>Bienvenidos a Warii</h1>
+    <h1 id="welcomeMessage">Bienvenidos a Warii</h1>
     
     <!-- Contenedor de productos -->
     <div id="products-container"></div>
@@ -65,8 +75,16 @@
 
         categorias.forEach(categoria => {
             const categorySection = document.createElement('section');
-            categorySection.innerHTML = `<h2>${categoria.nombre}</h2>`;
+            const title = document.createElement('h2');
+            title.textContent = categoria.nombre;
+            categorySection.appendChild(title);
             
+            const productsWrapper = document.createElement('div');
+            productsWrapper.style.display = 'flex';
+            productsWrapper.style.flexWrap = 'wrap';
+            productsWrapper.style.gap = '1rem';
+            productsWrapper.style.justifyContent = 'center';
+
             categoria.productos.slice(0, 3).forEach(producto => {
                 const card = document.createElement('div');
                 card.classList.add('product-card');
@@ -77,9 +95,10 @@
                     <p><strong>$${producto.precio.toFixed(2)}</strong></p>
                     <button onclick="addToCartFromIndex(${producto.id})">Añadir al carrito</button>
                 `;
-                categorySection.appendChild(card);
+                productsWrapper.appendChild(card);
             });
 
+            categorySection.appendChild(productsWrapper);
             container.appendChild(categorySection);
         });
     }
@@ -102,7 +121,28 @@
         });  // Llama a la función en cartManager.js
     }
 
-    document.addEventListener('DOMContentLoaded', fetchProducts);
+    function checkLoginStatus() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const loginLink = document.getElementById('loginLink');
+        const userImageLink = document.getElementById('userImageLink');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+
+        if (isLoggedIn) {
+            const userName = localStorage.getItem('userName'); // Obtener el nombre del usuario
+            loginLink.style.display = 'none';
+            userImageLink.style.display = 'block';
+            welcomeMessage.textContent = `Bienvenido de nuevo, ${userName}!`;
+        } else {
+            loginLink.style.display = 'block';
+            userImageLink.style.display = 'none';
+            welcomeMessage.textContent = 'Bienvenido a Warii!';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchProducts();
+        checkLoginStatus();
+    });
     </script>
 </body>
 </html>

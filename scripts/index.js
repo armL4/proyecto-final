@@ -72,4 +72,31 @@ document.addEventListener('DOMContentLoaded', () => {
     checkLoginStatus();
 });
 
+// Función para mostrar sugerencias de búsqueda
+function showSuggestions() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+    if (filter.length === 0) {
+        suggestions.style.display = 'none';
+        return;
+    }
+
+    const matchingProducts = productosData.filter(producto => producto.titulo.toLowerCase().includes(filter));
+    matchingProducts.forEach(producto => {
+        const suggestion = document.createElement('p');
+        suggestion.textContent = producto.titulo;
+        suggestion.onclick = () => {
+            input.value = producto.titulo;
+            suggestions.innerHTML = '';
+            suggestions.style.display = 'none';
+        };
+        suggestions.appendChild(suggestion);
+    });
+    suggestions.style.display = 'block';
+}
+
+
+
 

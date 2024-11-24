@@ -12,8 +12,9 @@
         <section>
             <img src="img/image.png" alt="Icono de la tienda" style="height:40px;padding-right: 100px;">
             <form action="search.html" method="GET" style="display:inline;">
-                <input type="text" name="query" placeholder="Buscar productos...">
+                <input type="text" id="searchInput" name="query" placeholder="Buscar productos...">
                 <button type="submit">Buscar</button>
+                <div id="suggestions" class="suggestions"></div>
             </form>
             <a href="login.html" id="loginLink">Login</a>
             <a href="usuario.html" id="userImageLink" style="display:none;">
@@ -21,12 +22,12 @@
             </a>
         </section>
         <section>
-            <a href="categoria1.html">Categoría 1</a>
-            <a href="categoria2.html">Categoría 2</a>
-            <a href="categoria3.html">Categoría 3</a>
-            <a href="categoria1.html">Categoría 4</a>
-            <a href="categoria1.html">Categoría 5</a>
-            <a href="categoria1.html">Categoría 6</a>
+            <a href="categoria1.html">Ficcion</a>
+            <a href="categoria2.html">Ciencia</a>
+            <a href="categoria3.html">Tecnología</a>
+            <a href="categoria1.html">Historia</a>
+            <a href="categoria1.html">infantil</a>
+            <a href="categoria1.html">psicologia</a>
             <a href="cart.html">Cart</a>
         </section>
     </nav>
@@ -38,10 +39,10 @@
 
     <!-- Archivo JavaScript para el manejo del carrito -->
     <script src="scripts/cartManager.js"></script>
-
     <script src="scripts/index.js"></script>
 </body>
 </html>
+
 
 
 

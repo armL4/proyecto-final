@@ -21,9 +21,9 @@
         </section>
         <section>
             <a href="categoria1.html">Ficcion</a>
-            <a href="index.html">Home</a>
+            <a href="categoria2.html">Ciencia</a>
             <a href="categoria3.html">Tecnología</a>
-            <a href="categoria4.html">Historia</a>
+            <a href="index.html">Home</a>
             <a href="categoria5.html">Infantil</a>
             <a href="categoria6.html">Asesino serial</a>
             <a href="cart.html">Cart</a>
@@ -54,7 +54,7 @@
             productosData = data.categorias.flatMap(categoria => categoria.productos);
             
             // Filtrar para obtener solo la categoría "Ficción"
-            const ficcionCategory = data.categorias.find(categoria => categoria.nombre === "Ciencia");
+            const ficcionCategory = data.categorias.find(categoria => categoria.nombre === "Historia");
             console.log('Categoría Ficción:', ficcionCategory);
             
             // Renderizar solo los productos de la categoría "Ficción"
@@ -146,6 +146,3 @@
     </script>
 </body>
 </html>
-
-
-

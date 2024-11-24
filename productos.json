@@ -56,6 +56,64 @@
                     "imagen": "img/libro.png"
                 }
             ]
+        },
+        {
+            "nombre": "Historia",
+            "productos": [
+                {
+                    "id": 7,
+                    "titulo": "Sapiens",
+                    "descripcion": "Una breve historia de la humanidad por Yuval Noah Harari.",
+                    "precio": 22.99,
+                    "imagen": "img/libro.png"
+                },
+                {
+                    "id": 8,
+                    "titulo": "Guerra y Paz",
+                    "descripcion": "Una obra maestra histórica de León Tolstói.",
+                    "precio": 25.99,
+                    "imagen": "img/libro.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Infantil",
+            "productos": [
+                {
+                    "id": 9,
+                    "titulo": "El Principito",
+                    "descripcion": "Un clásico infantil de Antoine de Saint-Exupéry.",
+                    "precio": 9.99,
+                    "imagen": "img/libro.png"
+                },
+                {
+                    "id": 10,
+                    "titulo": "Harry Potter y la piedra filosofal",
+                    "descripcion": "El inicio de la mágica saga de J.K. Rowling.",
+                    "precio": 14.99,
+                    "imagen": "img/libro.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Asesinos Cereales",
+            "productos": [
+                {
+                    "id": 11,
+                    "titulo": "Mindhunter",
+                    "descripcion": "Dentro de la Unidad de Criminología del FBI por John Douglas.",
+                    "precio": 17.99,
+                    "imagen": "img/libro.png"
+                },
+                {
+                    "id": 12,
+                    "titulo": "El Monstruo de Florencia",
+                    "descripcion": "La verdadera historia detrás de los asesinatos en Florencia.",
+                    "precio": 16.99,
+                    "imagen": "img/libro.png"
+                }
+            ]
         }
     ]
 }
+
