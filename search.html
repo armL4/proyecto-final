@@ -60,6 +60,12 @@
 
     function addToCart(productString) {
         const product = JSON.parse(decodeURIComponent(productString));
+        
+        if (!product.id || !product.titulo || !product.precio) {
+            console.error('Producto inválido:', product);
+            return;
+        }
+
         let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
         const existingProduct = carrito.find(item => item.id === product.id);
 
